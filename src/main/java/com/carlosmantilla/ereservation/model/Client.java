@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +25,7 @@ import lombok.Data;
 @Data //Lombok
 @Entity //Permite que esta clase represente una tabla en BD
 @Table (name = "client") //A cual tabla va a mapearse
-
+@NamedQuery(name="Client.findByClientId", query = "SELECT c FROM Cliente c WHERE c.clientDni = ?1")
 public class Client {
 	
 	@Id

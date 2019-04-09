@@ -3,6 +3,16 @@
  */
 package com.carlosmantilla.ereservation.model;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 
 /**
@@ -10,11 +20,33 @@ import lombok.Data;
  * @author carlosmantilla
  *
  */
-@Data //con esta anotacón 
+
+@Data //Lombok
+@Entity //Permite que esta clase represente una tabla en BD
+@Table (name = "client") //A cual tabla va a mapearse
+
 public class Client {
 	
-	String clientName;
-	String clientSurname;
+	@Id
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	private String clientId;
+	private String clientName;
+	private String clientSurname;
+	private String clientDni;
+	private String clientAddress;
+	private String clientPhone;
+	private String clientMail;
+	
+	@OneToMany (mappedBy= "client")//Un cliente tiene muchas reservas
+	private Set<Booking> bookings;
+	
+	
+	public Client() {
+	
+	}
+	
+	
 	
 	
 

@@ -10,7 +10,7 @@ import lombok.Data;
  * @author carlosmantilla
  *
  */
-@Data
+@Data //con esta anotacón 
 public class Client {
 	
 	String clientName;

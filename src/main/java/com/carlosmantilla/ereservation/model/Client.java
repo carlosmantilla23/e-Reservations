@@ -25,7 +25,7 @@ import lombok.Data;
 @Data //Lombok
 @Entity //Permite que esta clase represente una tabla en BD
 @Table (name = "client") //A cual tabla va a mapearse
-@NamedQuery(name="Client.findByClientId", query = "SELECT c FROM Cliente c WHERE c.clientDni = ?1")
+@NamedQuery(name="Client.findByClientId", query = "SELECT c FROM Client c WHERE c.clientDni = ?1")
 public class Client {
 	
 	@Id

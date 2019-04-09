@@ -17,7 +17,7 @@ import com.carlosmantilla.ereservation.model.Booking;
 
 public interface BookingRepository extends JpaRepository<Booking, String> {
 
-	@Query("SELECT r FROM RESERVA r WHERE r.dateInBooking =:dateInitial and r.dateOutBooking =:dateFinal")
+	@Query("SELECT r FROM Booking r WHERE r.dateInBooking =:dateInitial and r.dateOutBooking =:dateFinal")
 	public List<Booking> find(@Param("dateInitial") Date dateInitial, @Param("dateFinal") Date dateFinal);
 
 }

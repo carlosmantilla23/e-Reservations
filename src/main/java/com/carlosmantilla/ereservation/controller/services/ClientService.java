@@ -4,6 +4,7 @@
 package com.carlosmantilla.ereservation.controller.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carlosmantilla.ereservation.controller.repository.ClientRepository;
 import com.carlosmantilla.ereservation.model.Client;
@@ -15,6 +16,7 @@ import com.carlosmantilla.ereservation.model.Client;
  *
  */
 @Service
+@Transactional(readOnly = true)
 public class ClientService {
 
 	private final ClientRepository clientRepository;
@@ -30,6 +32,7 @@ public class ClientService {
 	 * @param cliente
 	 * @return
 	 */
+	@Transactional
 	public Client createClient(Client client) {
 		return this.clientRepository.save(client);
 	}
@@ -40,6 +43,7 @@ public class ClientService {
 	 * @param client
 	 * @return
 	 */
+	@Transactional
 	public Client updateClient(Client client) {
 		return this.clientRepository.save(client);
 	}
@@ -49,12 +53,14 @@ public class ClientService {
 	 * 
 	 * @param client
 	 */
+	@Transactional
 	public void deleteClient(Client client) {
 		this.clientRepository.delete(client);
 	}
 
 	/**
 	 * Metodo para consultar un cliente por su DNI
+	 * 
 	 * @param clientId
 	 * @return
 	 */

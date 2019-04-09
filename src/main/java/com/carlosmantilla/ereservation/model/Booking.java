@@ -36,10 +36,9 @@ public class Booking {
 	private Date dateOutBooking;
 	private int hostQuantity;
 	private String bookingDescription;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "clientId")
 	private Client client;
-	
 
 }

@@ -3,6 +3,8 @@
  */
 package com.carlosmantilla.ereservation.controller.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +68,10 @@ public class ClientService {
 	 */
 	public Client findByClientId(String clientId) {
 		return this.clientRepository.findByClientId(clientId);
+	}
+
+	public List<Client> findAll() {
+		return this.clientRepository.findAll();
 	}
 
 }

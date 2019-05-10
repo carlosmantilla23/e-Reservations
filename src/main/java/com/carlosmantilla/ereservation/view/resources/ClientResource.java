@@ -20,6 +20,11 @@ import com.carlosmantilla.ereservation.controller.services.ClientService;
 import com.carlosmantilla.ereservation.model.Client;
 import com.carlosmantilla.ereservation.view.resources.vo.ClientVO;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * @author carlosmantilla Clase que representa el web service de cliente el cual
  *         va a exponer las operaciones
@@ -27,6 +32,7 @@ import com.carlosmantilla.ereservation.view.resources.vo.ClientVO;
  */
 @RestController
 @RequestMapping("/api/client")
+@Api(tags = "client")
 public class ClientResource {
 
 	private final ClientService clientService;
@@ -37,6 +43,9 @@ public class ClientResource {
 	}
 
 	@PostMapping
+	@ApiOperation(value = "Create Client", notes = "Service for clients creation")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Successfully client creation"),
+			@ApiResponse(code = 400, message = "Invalid Request") })
 	public ResponseEntity<Client> createClient(@RequestBody ClientVO clientVo) {
 		Client client = new Client();
 		client.setClientName(clientVo.getClientName());
@@ -49,6 +58,9 @@ public class ClientResource {
 	}
 
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Update Client", notes = "Service for clients updating")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Successfully client update"),
+			@ApiResponse(code = 400, message = "Invalid Request") })
 	public ResponseEntity<Client> updateClient(@PathVariable("id") String id, ClientVO clientVo) {
 
 		Client client = this.clientService.findByClientId(id);
@@ -67,6 +79,9 @@ public class ClientResource {
 	}
 
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Remove Client", notes = "Service for clients remove")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Successfully client removed"),
+			@ApiResponse(code = 400, message = "Invalid Request") })
 	public void deleteClient(@PathVariable("id") String id) {
 
 		Client client = this.clientService.findByClientId(id);
@@ -77,6 +92,9 @@ public class ClientResource {
 	}
 
 	@GetMapping
+	@ApiOperation(value = "Show All Clients", notes = "Service for list all clients")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Successfully clients listed"),
+			@ApiResponse(code = 400, message = "Invalid Request") })
 	public ResponseEntity<List<Client>> findAll() {
 		return ResponseEntity.ok(this.clientService.findAll());
 	}
